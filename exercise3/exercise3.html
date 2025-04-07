@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart</title>
+</head>
+
+<body>
+
+  <!-- Lista donde se mostrarán los productos con su precio y stock -->
+  <h1>AVAILABLE PRODUCTS</h1>
+  <ul id="product-list"></ul>
+
+  <!-- Sección para agregar productos al carrito -->
+  <h2>ADD TO CART</h2>
+  <!-- Menú desplegable para elegir producto -->
+  <select id="product">
+    <option value="Laptop">Laptop</option>
+    <option value="Mouse">Mouse</option>
+    <option value="Keyboard">Keyboard</option>
+  </select>
+  <!-- Campo para ingresar cantidad -->
+  <input type="number" id="addQuantity" placeholder="Quantity" />
+  <!-- Botón que llama a la función para agregar -->
+  <button onclick="addToCart(document.getElementById('product').value, parseInt(document.getElementById('addQuantity').value))">
+    Add
+  </button>
+
+  <!-- Sección para remover productos del carrito -->
+  <h2>REMOVE FROM CART</h2>
+  <!-- Menú para elegir el producto a remover -->
+  <select id="removeProduct">
+    <option value="Laptop">Laptop</option>
+    <option value="Mouse">Mouse</option>
+    <option value="Keyboard">Keyboard</option>
+  </select>
+  <!-- Cantidad a remover -->
+  <input type="number" id="removeQuantity" placeholder="Quantity" />
+  <!-- Botón que llama a la función de remover -->
+  <button onclick="removeFromCart(document.getElementById('removeProduct').value, parseInt(document.getElementById('removeQuantity').value))">
+    Remove
+  </button>
+
+  <!-- Sección donde se muestra el contenido actual del carrito -->
+  <h2>CART</h2>
+  <ul id="cart"></ul>
+  <!-- Total de la compra -->
+  <p id="total"></p>
+  <!-- Botón para pagar -->
+  <button onclick="checkout()">Checkout</button>
+
+  <!-- Conexión al archivo JavaScript -->
+  <script src="exercise3.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turn Queue System</title>
+</head>
+
+<body>
+
+  <h1>Turn Queue System</h1>
+
+  <h2>Total shift now</h2>
+  <p id="totalShift">No turns in the queue.</p>
+
+  <h2>Take a Turn</h2>
+  <input type="text" id="firstName" placeholder="First Name">
+  <input type="text" id="lastName" placeholder="Last Name">
+  <button onclick="takeTurnFromInput()">Take Turn</button>
+
+  <h2>Current Turn</h2>
+  <p id="currentTurn">No turns in the queue.</p>
+
+  <h2>Waiting Queue</h2>
+  <ul id="queue"></ul>
+
+  <button onclick="callTurn()">Call Next Turn</button>
+
+  <script src="exercise2.js"></script>
+</body>
+</html>
