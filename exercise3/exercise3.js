@@ -1,4 +1,4 @@
-const cart = []; // Array vacion, aqui se guardaran los productos que se añadan al carrito
+const cart = []; // Array vacio, aqui se guardaran los productos que se añadan al carrito
 const products = [ // Lista de productos disponibles con su precio y stock
     { name: "Laptop", price: 1000, stock: 5 },
     { name: "Mouse", price: 50, stock: 10 },
