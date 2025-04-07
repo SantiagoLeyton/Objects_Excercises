@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Appointments</title>
+</head>
+
+<body>
+
+  <h1>Medical Appointment Scheduler</h1>
+
+  <h2>Schedule a new appointment</h2>
+  <input type="text" id="name" placeholder="Patient name"> <!-- Espacio para ingresar el nombre del paciente -->
+  <input type="date" id="date"> <!-- Espacio para ingresar la fecha -->
+  <input type="time" id="time"> <!-- Espacio para ingresar la hora -->
+  <select id="doctor"> <!-- Espacio para ingresar al doctor --> 
+    <option value="">Select Doctor</option>
+    <option value="Dr. Angelo">Dr. Angelo</option>
+    <option value="Dr. María">Dr. María</option>
+    <option value="Dr. Carlos">Dr. Carlos</option>
+    <option value="Dr. Fernanda">Dr. Fernanda</option>
+  </select>
+  <button onclick="scheduleAppointment()">Schedule</button> <!-- Botón para confirmar la cita -->
+
+  <h2>Scheduled Appointments</h2>
+  <ul id="appointmentList"></ul> <!-- Lista de las citas programadas -->
+
+  <h2>Cancel an Appointment</h2>
+  <input type="number" id="cancelIndex" placeholder="Appointment number to cancel"> <!-- Espacio para ingresar el número de la cita a cancelar -->
+  <button onclick="cancelAppointment()">Cancel</button> <!-- Botón para confirmar la eliminación de la cita -->
+
+  <script src="exercise4.js"></script>
+</body>
+</html>
