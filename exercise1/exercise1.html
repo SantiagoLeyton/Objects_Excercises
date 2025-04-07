@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Attention Statistics</title>
+</head>
+
+<body>
+    <h1>Attention Registration</h1>
+
+    <!-- Campo para cédula del usuario -->
+    <label for="userId">ID number:</label>
+    <input type="text" id="userId"><br><br>
+
+    <!-- Selección del módulo de atención -->
+    <label for="module">Type of attention:</label>
+    <select id="module" onchange="toggleAdviceType()">
+        <option value="phone">Phone call</option>
+        <option value="advice">Advisory</option>
+    </select><br><br>
+
+    <!-- Selección del tipo de asesoría (solo visible si se elige "advice") -->
+    <div id="adviceTypeContainer" style="display: none;">
+        <label for="adviceType">Advisory type:</label>
+        <select id="adviceType">
+            <option value="student">Student</option>
+            <option value="staff">Staff</option>
+        </select><br><br>
+    </div>
+
+    <!-- Botones para registrar y transferir -->
+    <button onclick="registerAttention()">Register attention</button>
+    <button onclick="transferToPhone()">Transfer to phone</button>
+
+    <!-- Estadísticas mostradas en pantalla -->
+    <h2>Statistics</h2>
+    <p id="totalCount">Total users attended: 0</p>
+    <p id="phoneCount">Phone calls: 0</p>
+    <p id="studentAdviceCount">Advisory to students: 0</p>
+    <p id="staffAdviceCount">Advisory to staff: 0</p>
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="exercise1.js"></script>
+</body>
+</html>

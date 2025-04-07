@@ -1,82 +1,77 @@
-//Lista para almacenar los usuarios atendidos
-const users = [];
+// Arreglo para guardar los registros de atención
+let attentionLog = [ ];
 
-//Función para registrar un usuario
-function registerUser(id, type, module) {
-    users.push({ id, type, module });
-}
+// Función para registrar un nuevo usuario atendido
+const registerAttention = () => {
+    // Obtener los datos del formulario
+    const id = document.getElementById("userId").value.trim();
+    const module = document.getElementById("module").value;
+    const type = document.getElementById("adviceType").value;
 
-// Función para transferir asesoría a llamada telefónica
-function transferToCall(id) {
-    const user = users.find(user => user.id === id && user.module === 'asesoría');
-    if (user) {
-        user.module = 'llamada telefónica';
-    } else {
-        console.error('User not found or not in asesoría module');
+    // Validación básica de la cédula
+    if (id === "" || id.length != 10 || isNaN(id)) {
+        alert("Please enter an ID number.");
+        return;
     }
+
+    // Crear objeto de atención
+    const attention = {
+        id: id,
+        module: module,
+        type: module === "advice" ? type : "N/A"
+    };
+
+    // Agregar al arreglo de registros
+    attentionLog.push(attention);
+
+    // Mostrar confirmación
+    alert("User successfully registered.");
+
+    // Limpiar formulario
+    document.getElementById("userId").value = "";
+    document.getElementById("module").value = "phone";
+    document.getElementById("adviceType").value = "student";
+    document.getElementById("adviceTypeContainer").style.display = "none";
+
+    // Actualizar estadísticas
+    updateStats();
 }
 
-// Función para generar estadísticas
-function generateStatistics() {
-    const totalUsers = users.length;
-
-    const byType = users.reduce((acc, user) => {
-        acc[user.type] = (acc[user.type] || 0) + 1;
-        return acc;
-    }, {});
-
-    const byModule = users.reduce((acc, user) => {
-        acc[user.module] = (acc[user.module] || 0) + 1;
-        return acc;
-    }, {});
-
-    return {
-        totalUsers,
-        byType,
-        byModule
-    };
+// Mostrar u ocultar tipo de asesoría según módulo
+const toggleAdviceType = () => {
+    const module = document.getElementById("module").value;
+    const adviceContainer = document.getElementById("adviceTypeContainer");
+    adviceContainer.style.display = module === "advice" ? "block" : "none";
 }
 
-// Add users manually
+// Función para actualizar estadísticas
+const updateStats = () => {
+    const total = attentionLog.length;
 
-function addUser() {
-    let Id = 0
-    let Type;
-    let Module;
+    const phoneCount = attentionLog.filter(att => att.module === "phone").length;
+    const adviceStudent = attentionLog.filter(att => att.module === "advice" && att.type === "student").length;
+    const adviceStaff = attentionLog.filter(att => att.module === "advice" && att.type === "staff").length;
 
-    while(true){
-        Id = parseInt(prompt('Please put you ID here.'))
-        if(Id.length < 10) {
-            alert(`Your ID is too short, it must have at least 10 numbers.`)
-        } else if (Id.length > 10) {
-            alert(`Your ID is too long, it must have at least 10 numbers.`)
-        } else {
-            break;
-        };
-    };
+    // Mostrar resultados
+    document.getElementById("totalCount").textContent = `Total users attended: ${total}`;
+    document.getElementById("phoneCount").textContent = `Phone calls: ${phoneCount}`;
+    document.getElementById("studentAdviceCount").textContent = `Advice to students: ${adviceStudent}`;
+    document.getElementById("staffAdviceCount").textContent = `Advice to staff: ${adviceStaff}`;
+}
 
-    while(true){
-        Type = prompt(`What is your role at the university?\n1. Student\n2. Teacher\n3. Director\n4. Attendant\n5. Particular`);
-        switch(Type){
-            case 1: 
-                Type = "student";
-                break;
-            case 2:
-                Type = "teacher";
-                break;
-            case 3:
-                Type = "director";
-                break;
-            case 4:
-                Type = "attendant";
-                break;
-            case 5:
-                Type = "particular";
-                break;
-            default:
-                alert(`Please choose an option`);
-        };
-    };
+// Función para transferir de asesoría a llamada
+const transferToPhone = () => {
+    const id = prompt("Enter the ID of the user to transfer:");
 
-    //CONTINUAR AQUI
+    // Buscar atención con asesoría
+    const found = attentionLog.find(att => att.id === id && att.module === "advice");
+
+    if (found) {
+        found.module = "phone";
+        found.type = "N/A";
+        alert("User transferred to phone call.");
+        updateStats();
+    } else {
+        alert("No matching user found in advice module.");
+    }
 }
